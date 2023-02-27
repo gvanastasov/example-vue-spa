@@ -10,6 +10,11 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
   },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+    },
+  },
   devServer: {
     static: {
       directory: path.join(__dirname, "dist"),
