@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/gvanastasov/example-vue-spa#readme",
   "dependencies": {
-    "vue": "^3.2.47"
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",

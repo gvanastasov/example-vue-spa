@@ -1,22 +1,13 @@
 <template>
-  <div class="message">
-    {{ greeting }}
+  <div>
+    <router-link to="/">Home</router-link>
+    <router-link to="/about">About</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      greeting: "Hello, World!",
-    };
-  },
+  name: "App",
 };
 </script>
-
-<style lang="scss">
-.message {
-  text-align: center;
-  font-size: 30px;
-}
-</style>

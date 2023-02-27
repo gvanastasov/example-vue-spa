@@ -21,6 +21,9 @@ module.exports = {
     },
     port: 9000,
     open: true,
+    historyApiFallback: {
+      index: "index.html",
+    },
   },
   stats: {
     colors: true,
