@@ -6,17 +6,17 @@
 
 <script>
 export default {
-    data() {
-        return {
-            greeting: "Hello, World!"
-        }
-    }
-}
+  data() {
+    return {
+      greeting: "Hello, World!",
+    };
+  },
+};
 </script>
 
 <style lang="scss">
 .message {
-    text-align: center;
-    font-size: 30px;
+  text-align: center;
+  font-size: 30px;
 }
 </style>
