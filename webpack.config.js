@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
 const WebpackBar = require("webpackbar");
+const webpack = require("webpack");
 
 module.exports = {
   mode: "development",
@@ -94,6 +95,10 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      __VUE_OPTIONS_API__: true,
+      __VUE_PROD_DEVTOOLS__: false,
+    }),
     new WebpackBar(),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin(),
