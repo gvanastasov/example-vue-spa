@@ -7,7 +7,14 @@
 </template>
 
 <script>
+import { mapState } from "pinia";
+import { useUserStore } from "@/stores";
+
 export default {
   name: "App",
+
+  computed: {
+    ...mapState(useUserStore, ["firstName"]),
+  },
 };
 </script>
