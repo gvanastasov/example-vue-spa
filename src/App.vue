@@ -12,8 +12,6 @@ import { mapState } from "pinia";
 import { useUserStore } from "@/stores";
 import { get } from "@/api";
 
-import "./app.scss";
-
 import CNavbar from "@/components/navbar/Navbar.vue";
 
 export default {
@@ -37,4 +35,4 @@ export default {
 };
 </script>
 
-<!-- <style lang="scss" src="./app.scss"></style> -->
+<style lang="scss" src="./app.scss"></style>
