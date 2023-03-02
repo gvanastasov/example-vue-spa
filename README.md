@@ -5,5 +5,7 @@
 3. install babel
 4. install bundler - webpack
 5. install webpack vue loaders
-6. install router and configure
-7. install state management
+6. install eslint and prettier
+7. install router and configure
+8. install state management
+9. install bootstrap and theming
