@@ -1,4 +1,5 @@
 import { createApp } from "vue";
+import BootstrapVueNext from "bootstrap-vue-next";
 
 import App from "./App.vue";
 import router from "./router";
@@ -11,4 +12,4 @@ if (process.env.NODE_ENV === "development") {
   runMockServer();
 }
 
-app.use(router).use(store).mount("#root");
+app.use(router).use(store).use(BootstrapVueNext).mount("#root");

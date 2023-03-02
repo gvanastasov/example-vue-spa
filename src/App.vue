@@ -1,5 +1,6 @@
 <template>
   <div>
+    <c-navbar />
     <router-link to="/">Home</router-link>
     <router-link to="/about">About</router-link>
     <router-view></router-view>
@@ -11,8 +12,16 @@ import { mapState } from "pinia";
 import { useUserStore } from "@/stores";
 import { get } from "@/api";
 
+import "./app.scss";
+
+import CNavbar from "@/components/navbar/Navbar.vue";
+
 export default {
   name: "App",
+
+  components: {
+    CNavbar,
+  },
 
   computed: {
     ...mapState(useUserStore, ["firstName"]),
@@ -27,3 +36,5 @@ export default {
   },
 };
 </script>
+
+<!-- <style lang="scss" src="./app.scss"></style> -->
