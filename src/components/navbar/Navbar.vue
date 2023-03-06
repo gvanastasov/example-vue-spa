@@ -32,9 +32,14 @@
         </b-nav-item-dropdown> -->
 
         <b-nav-item-dropdown right>
-          <template #button-content>User</template>
-          <b-dropdown-item href="#">Profile</b-dropdown-item>
-          <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+          <template #button-content>{{ userFirstName }}</template>
+          <template v-if="userAuthenticated">
+            <b-dropdown-item href="#">Profile</b-dropdown-item>
+            <b-dropdown-item href="#">Logout</b-dropdown-item>
+          </template>
+          <template v-else>
+            <b-dropdown-item :to="{ name: 'login' }">Login</b-dropdown-item>
+          </template>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
@@ -42,7 +47,19 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from "pinia";
+import { useUserStore } from "@/stores";
+
 export default {
   name: "CNavbar",
+
+  computed: {
+    ...mapState(useUserStore, {
+      userFirstName: "firstName",
+    }),
+    ...mapGetters(useUserStore, {
+      userAuthenticated: "isAuthenticated",
+    }),
+  },
 };
 </script>
