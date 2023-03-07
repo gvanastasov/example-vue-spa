@@ -10,3 +10,4 @@
 8. install state management
 9. install bootstrap and theming
 10. install localization
+11. install validation

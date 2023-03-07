@@ -2,5 +2,10 @@
   "login": {
     "title": "Login",
     "formSubmitButton": "Sign Up"
+  },
+  "validations": {
+    "required": "{property} is required.",
+    "email": "{property} is not a valid email.",
+    "minLength": "{property} has a value of '{model}', but it must have a min length of {min}."
   }
 }

@@ -7,12 +7,13 @@
           label="Username:"
           label-for="input-1"
           label-sr-only
+          :invalid-feedback="v$.form.username.$errors[0]?.$message"
+          :state="!v$.form.username.$error"
         >
           <b-form-input
             id="input-1"
-            v-model="form.username"
+            v-model="v$.form.username.$model"
             placeholder="Username"
-            required
           ></b-form-input>
         </b-form-group>
 
@@ -21,12 +22,13 @@
           label="First Name:"
           label-for="input-2"
           label-sr-only
+          :invalid-feedback="v$.form.firstName.$errors[0]?.$message"
+          :state="!v$.form.firstName.$error"
         >
           <b-form-input
             id="input-2"
-            v-model="form.firstName"
+            v-model="v$.form.firstName.$model"
             placeholder="First Name"
-            required
           ></b-form-input>
         </b-form-group>
 
@@ -35,12 +37,13 @@
           label="Last Name:"
           label-for="input-3"
           label-sr-only
+          :invalid-feedback="v$.form.lastName.$errors[0]?.$message"
+          :state="!v$.form.lastName.$error"
         >
           <b-form-input
             id="input-3"
-            v-model="form.lastName"
+            v-model="v$.form.lastName.$model"
             placeholder="Last Name"
-            required
           ></b-form-input>
         </b-form-group>
 
@@ -49,10 +52,12 @@
           label="Email:"
           label-for="input-4"
           label-sr-only
+          :invalid-feedback="v$.form.email.$errors[0]?.$message"
+          :state="!v$.form.email.$error"
         >
           <b-form-input
             id="input-4"
-            v-model="form.email"
+            v-model="v$.form.email.$model"
             type="email"
             placeholder="Email"
             required
@@ -64,10 +69,12 @@
           label="Password:"
           label-for="input-5"
           label-sr-only
+          :invalid-feedback="v$.form.password.$errors[0]?.$message"
+          :state="!v$.form.password.$error"
         >
           <b-form-input
             id="input-5"
-            v-model="form.password"
+            v-model="v$.form.password.$model"
             type="password"
             placeholder="Password"
             required
@@ -79,10 +86,12 @@
           label="Confirm Password:"
           label-for="input-6"
           label-sr-only
+          :invalid-feedback="v$.form.passwordConfirm.$errors[0]?.$message"
+          :state="!v$.form.passwordConfirm.$error"
         >
           <b-form-input
             id="input-6"
-            v-model="form.passwordConfirm"
+            v-model="v$.form.passwordConfirm.$model"
             type="password"
             placeholder="Confirm Password"
             required
@@ -102,6 +111,9 @@
 </template>
 
 <script>
+import { useVuelidate } from "@vuelidate/core";
+import { minLength, required, email } from "@/validators";
+
 import LPageDialog from "@/components/layouts/LPageDialog.vue";
 
 export default {
@@ -109,6 +121,10 @@ export default {
 
   components: {
     LPageDialog,
+  },
+
+  setup() {
+    return { v$: useVuelidate() };
   },
 
   data() {
@@ -120,6 +136,19 @@ export default {
         email: "",
         password: "",
         passwordConfirm: "",
+      },
+    };
+  },
+
+  validations() {
+    return {
+      form: {
+        username: { minLength: minLength(4), required },
+        firstName: { minLength: minLength(2), required },
+        lastName: { minLength: minLength(2), required },
+        email: { required, email },
+        password: { minLength: minLength(6), required },
+        passwordConfirm: { minLength: minLength(6), required },
       },
     };
   },
