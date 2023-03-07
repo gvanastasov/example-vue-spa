@@ -9,3 +9,4 @@
 7. install router and configure
 8. install state management
 9. install bootstrap and theming
+10. install localization
