@@ -31,10 +31,14 @@
           ></b-form-input>
         </b-form-group>
 
-        <b-button type="submit" variant="primary" class="w-100">{{
+        <b-button block type="submit" variant="primary" class="w-100">{{
           $t("login.formSubmitButton")
         }}</b-button>
       </b-form>
+      <p class="mt-5 mb-0 text-center">Don't have an account?</p>
+      <b-button block variant="link" :to="{ name: 'register' }" class="w-100"
+        >Register</b-button
+      >
     </l-page-dialog>
   </b-container>
 </template>
