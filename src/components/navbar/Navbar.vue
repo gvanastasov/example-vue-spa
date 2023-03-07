@@ -41,6 +41,9 @@
           </template>
           <template v-else>
             <b-dropdown-item :to="{ name: 'login' }">Login</b-dropdown-item>
+            <b-dropdown-item :to="{ name: 'register' }"
+              >Register</b-dropdown-item
+            >
           </template>
         </b-nav-item-dropdown>
       </b-navbar-nav>
