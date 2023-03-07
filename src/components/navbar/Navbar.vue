@@ -23,13 +23,15 @@
           >
         </b-nav-form> -->
 
-        <!-- todo: add localization -->
-        <!-- <b-nav-item-dropdown text="Lang" right>
-          <b-dropdown-item href="#">EN</b-dropdown-item>
-          <b-dropdown-item href="#">ES</b-dropdown-item>
-          <b-dropdown-item href="#">RU</b-dropdown-item>
-          <b-dropdown-item href="#">FA</b-dropdown-item>
-        </b-nav-item-dropdown> -->
+        <b-nav-item-dropdown :text="$i18n.locale" right>
+          <b-dropdown-item
+            v-for="locale in $i18n.availableLocales"
+            :key="`locale-${locale}`"
+            :value="locale"
+            @click="changeLocale(locale)"
+            >{{ locale }}</b-dropdown-item
+          >
+        </b-nav-item-dropdown>
 
         <b-nav-item-dropdown right>
           <template #button-content>{{ username }}</template>
@@ -66,8 +68,13 @@ export default {
     ...mapActions(useUserStore, {
       userLogout: "logout",
     }),
+
     handleLogutClick() {
       this.userLogout();
+    },
+
+    changeLocale(locale) {
+      this.$i18n.locale = locale;
     },
   },
 };

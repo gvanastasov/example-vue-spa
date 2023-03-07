@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <l-page-dialog title="Login">
+    <l-page-dialog :title="$t('login.title')">
       <b-form ref="form" @submit="onSubmit" @reset="onReset">
         <b-form-group
           id="input-group-1"
@@ -31,9 +31,9 @@
           ></b-form-input>
         </b-form-group>
 
-        <b-button type="submit" variant="primary" class="w-100"
-          >Sign In</b-button
-        >
+        <b-button type="submit" variant="primary" class="w-100">{{
+          $t("login.formSubmitButton")
+        }}</b-button>
       </b-form>
     </l-page-dialog>
   </b-container>
