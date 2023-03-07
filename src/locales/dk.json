@@ -6,6 +6,7 @@
   "validations": {
     "required": "{property} er påkrævet.",
     "email": "{property} er ikke en gyldig e-mail.",
+    "sameAs": "{property} matcher ikke.",
     "minLength": "{property} har værdien '{model}', men det skal have en minimumlængde på {min}."
   }
 }

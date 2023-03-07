@@ -7,6 +7,9 @@ const localized = createI18nMessage({ t: i18n.global.t.bind(i18n) });
 
 export const required = localized(validators.required);
 export const email = localized(validators.email);
+export const sameAs = localized(validators.sameAs, {
+  withArguments: true,
+});
 export const minLength = localized(validators.minLength, {
   withArguments: true,
 });

@@ -98,7 +98,12 @@
           ></b-form-input>
         </b-form-group>
 
-        <b-button block type="submit" variant="primary" class="w-100"
+        <b-button
+          block
+          type="submit"
+          variant="primary"
+          class="w-100"
+          :disabled="v$.$invalid"
           >Register</b-button
         >
       </b-form>
@@ -112,7 +117,7 @@
 
 <script>
 import { useVuelidate } from "@vuelidate/core";
-import { minLength, required, email } from "@/validators";
+import { minLength, required, email, sameAs } from "@/validators";
 
 import LPageDialog from "@/components/layouts/LPageDialog.vue";
 
@@ -148,7 +153,7 @@ export default {
         lastName: { minLength: minLength(2), required },
         email: { required, email },
         password: { minLength: minLength(6), required },
-        passwordConfirm: { minLength: minLength(6), required },
+        passwordConfirm: { sameAs: sameAs(this.form.password) },
       },
     };
   },
