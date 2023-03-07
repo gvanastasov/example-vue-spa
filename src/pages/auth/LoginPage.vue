@@ -1,7 +1,7 @@
 <template>
   <b-container>
-    <l-page-dialog>
-      <b-form @submit="onSubmit" @reset="onReset">
+    <l-page-dialog title="Login">
+      <b-form ref="form" @submit="onSubmit" @reset="onReset">
         <b-form-group
           id="input-group-1"
           label="Username:"
@@ -31,7 +31,9 @@
           ></b-form-input>
         </b-form-group>
 
-        <b-button type="submit" variant="primary" class="w-100">Login</b-button>
+        <b-button type="submit" variant="primary" class="w-100"
+          >Sign In</b-button
+        >
       </b-form>
     </l-page-dialog>
   </b-container>
@@ -66,6 +68,8 @@ export default {
       this.userLogin({
         username: this.form.username,
         password: this.form.password,
+      }).then(() => {
+        this.$refs.form.$el.reset();
       });
     },
 

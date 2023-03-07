@@ -32,10 +32,10 @@
         </b-nav-item-dropdown> -->
 
         <b-nav-item-dropdown right>
-          <template #button-content>{{ userFirstName }}</template>
+          <template #button-content>{{ username }}</template>
           <template v-if="userAuthenticated">
             <b-dropdown-item href="#">Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Logout</b-dropdown-item>
+            <b-dropdown-item @click="handleLogutClick">Logout</b-dropdown-item>
           </template>
           <template v-else>
             <b-dropdown-item :to="{ name: 'login' }">Login</b-dropdown-item>
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "pinia";
+import { mapState, mapGetters, mapActions } from "pinia";
 import { useUserStore } from "@/stores";
 
 export default {
@@ -55,11 +55,20 @@ export default {
 
   computed: {
     ...mapState(useUserStore, {
-      userFirstName: "firstName",
+      username: "username",
     }),
     ...mapGetters(useUserStore, {
       userAuthenticated: "isAuthenticated",
     }),
+  },
+
+  methods: {
+    ...mapActions(useUserStore, {
+      userLogout: "logout",
+    }),
+    handleLogutClick() {
+      this.userLogout();
+    },
   },
 };
 </script>

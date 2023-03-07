@@ -61,8 +61,12 @@ export function run({ environment = "development" } = {}) {
 
           return user;
         },
-        { timing: 3000 }
+        { timing: 300 }
       );
+
+      this.post("/users/logout", () => {
+        document.cookie = `auth=; SameSite=None; Secure; domain=localhost; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+      });
     },
   });
 

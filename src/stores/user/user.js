@@ -10,17 +10,25 @@ const useUserStore = defineStore(ID, {
     return {
       id: -1,
       email: "",
-      firstName: "Annonymous",
+      firstName: "",
       lastName: "",
-      username: "",
+      username: "annonymous",
     };
   },
 
   actions: {
     login({ username, password }) {
-      post("/api/users/login", { username, password }).then(({ user }) => {
-        const { id, email, firstName, lastName, username } = user;
-        this.$patch({ id, email, firstName, lastName, username });
+      return post("/api/users/login", { username, password }).then(
+        ({ user }) => {
+          const { id, email, firstName, lastName, username } = user;
+          this.$patch({ id, email, firstName, lastName, username });
+        }
+      );
+    },
+
+    logout() {
+      return post("/api/users/logout").then(() => {
+        this.$reset();
       });
     },
   },
