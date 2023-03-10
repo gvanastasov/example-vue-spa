@@ -32,15 +32,7 @@
           <p>{{ sections.main.content }}</p>
         </l-section>
 
-        <l-section>
-          <p>Check our latest books</p>
-          <b-card-group deck>
-            <c-product-card></c-product-card>
-            <c-product-card></c-product-card>
-            <c-product-card></c-product-card>
-            <c-product-card></c-product-card>
-          </b-card-group>
-        </l-section>
+        <c-product-grid></c-product-grid>
       </l-section-chain>
     </b-container>
   </div>
@@ -49,7 +41,7 @@
 <script>
 import LSection from "@/components/layouts/LSection.vue";
 import LSectionChain from "@/components/layouts/LSectionChain.vue";
-import { CProductCard } from "@/components";
+import { CProductGrid } from "@/components";
 import contentBuilder from "@/utils/content.js";
 
 export default {
@@ -58,7 +50,7 @@ export default {
   components: {
     LSectionChain,
     LSection,
-    CProductCard,
+    CProductGrid,
   },
 
   data() {
