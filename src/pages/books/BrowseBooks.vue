@@ -1,6 +1,6 @@
 <template>
   <b-container fluid>
-    <b-row>
+    <b-row class="mt-5">
       <b-col cols="10" offset="2">
         <l-section jumbo>
           <template #header>Browse</template>
@@ -10,7 +10,15 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-col cols="2">filters</b-col>
+      <b-col cols="2">
+        <b-list-group>
+          <b-list-group-item variant="primary" active>Genre</b-list-group-item>
+          <b-list-group-item button>Button item</b-list-group-item>
+          <b-list-group-item button active variant="secondary"
+            >Active Button item</b-list-group-item
+          >
+        </b-list-group>
+      </b-col>
       <b-col cols="10">
         <c-product-grid></c-product-grid>
       </b-col>
