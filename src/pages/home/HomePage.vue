@@ -23,7 +23,7 @@
     </b-carousel>
     <b-container>
       <l-section-chain>
-        <l-section jumbo>
+        <l-section jumbo separator-top>
           <template #header>Example Book Store</template>
           <template #lead>
             This is a simple bookstore website, used to showcase how to build

@@ -1,6 +1,6 @@
 <template>
   <div :class="{ 'px-3': true, 'py-5': true, 'pb-0': spaced, 'pt-0': !spaced }">
-    <hr class="my-4" />
+    <hr v-if="separatorTop" class="my-4" />
 
     <component :is="`h${headerLevel}`" :class="`display-${headerAs}`"
       ><slot name="header"></slot
@@ -28,6 +28,10 @@ export default {
     as: {
       type: Number,
       default: 6,
+    },
+    separatorTop: {
+      type: Boolean,
+      default: false,
     },
   },
 
