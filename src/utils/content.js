@@ -1,19 +1,30 @@
-import { faker } from "@faker-js/faker";
+import { LoremIpsum } from "lorem-ipsum";
+
+const lorem = new LoremIpsum({
+  sentencesPerParagraph: {
+    max: 8,
+    min: 4,
+  },
+  wordsPerSentence: {
+    max: 16,
+    min: 4,
+  },
+});
 
 const builder = () => ({
   output: "",
 
   generateWords({ count, min, max }) {
     const countInternal =
-      count ?? (min && max) ? getRandomInt(min, max) : undefined ?? 3;
-    this.output = faker.lorem.words(countInternal);
+      count ?? (min && max ? getRandomInt(min, max) : undefined) ?? 3;
+    this.output = lorem.generateWords(countInternal);
     return this;
   },
 
   generateSentences({ count, min, max }) {
     const countInternal =
-      count ?? (min && max) ? getRandomInt(min, max) : undefined ?? 3;
-    this.output = faker.lorem.sentences(countInternal);
+      count ?? (min && max ? getRandomInt(min, max) : undefined) ?? 3;
+    this.output = lorem.generateSentences(countInternal);
     return this;
   },
 
