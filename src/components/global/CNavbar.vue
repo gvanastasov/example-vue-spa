@@ -1,11 +1,12 @@
 <template>
   <b-navbar toggleable="lg" type="dark" variant="primary" dark="true">
-    <b-navbar-brand href="/">Example Company</b-navbar-brand>
+    <b-navbar-brand :to="{ name: 'home' }">Example Company</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
+        <b-nav-item :to="{ name: 'home' }">Home</b-nav-item>
         <b-nav-item :to="{ name: 'browse' }">Books</b-nav-item>
         <b-nav-item href="#">Stores</b-nav-item>
         <b-nav-item href="#">About</b-nav-item>
