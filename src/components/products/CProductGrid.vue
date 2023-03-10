@@ -1,6 +1,6 @@
 <template>
   <l-section>
-    <h3 class="text-center mb-5">Check our latest books</h3>
+    <h3 v-if="title" class="text-center mb-5">{{ title }}</h3>
     <b-card-group :deck="deck">
       <c-product-card
         v-for="book in books"
@@ -29,6 +29,10 @@ export default {
   },
 
   props: {
+    title: {
+      type: String,
+      default: undefined,
+    },
     take: {
       type: Number,
       default: undefined,
