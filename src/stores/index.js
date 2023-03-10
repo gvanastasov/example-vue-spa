@@ -1,6 +1,7 @@
 import { createPinia } from "pinia";
 
 import useUserStore from "./user/user";
+import useBookStore from "./book/book";
 
 const piniaStore = createPinia();
 
@@ -9,7 +10,8 @@ export default {
     app.use(piniaStore);
 
     useUserStore();
+    useBookStore();
   },
 };
 
-export { useUserStore };
+export { useUserStore, useBookStore };
