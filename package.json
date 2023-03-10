@@ -26,6 +26,7 @@
     "@vuelidate/validators": "^2.0.0",
     "bootstrap": "^5.2.3",
     "bootstrap-vue-next": "^0.7.3",
+    "lorem-ipsum": "^2.0.8",
     "pinia": "^2.0.32",
     "vue": "^3.2.47",
     "vue-i18n": "^9.2.2",
