@@ -23,7 +23,7 @@ const factory = Factory.extend({
     return faker.lorem.sentence();
   },
   published() {
-    return faker.date.recent();
+    return faker.date.recent(3600);
   },
   category() {
     return faker.helpers.arrayElement(categories);
