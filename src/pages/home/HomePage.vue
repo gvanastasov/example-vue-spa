@@ -32,7 +32,7 @@
           <p>{{ sections.main.content }}</p>
         </l-section>
 
-        <c-product-grid :take="4" order="desc"></c-product-grid>
+        <c-product-grid :take="4" order="desc" deck></c-product-grid>
       </l-section-chain>
     </b-container>
   </div>

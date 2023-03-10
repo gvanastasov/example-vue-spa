@@ -1,7 +1,7 @@
 <template>
   <l-section>
     <h3 class="text-center mb-5">Check our latest books</h3>
-    <b-card-group deck>
+    <b-card-group :deck="deck">
       <c-product-card
         v-for="book in books"
         :key="book.id"
@@ -31,12 +31,17 @@ export default {
   props: {
     take: {
       type: Number,
-      required: true,
+      default: undefined,
     },
 
     order: {
       type: String,
-      default: "asc",
+      default: undefined,
+    },
+
+    deck: {
+      type: Boolean,
+      default: false,
     },
   },
 
