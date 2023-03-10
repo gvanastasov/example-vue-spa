@@ -6,6 +6,7 @@
         v-for="book in books"
         :key="book.id"
         v-bind="book"
+        :published="book.publishedFormatted"
       ></c-product-card>
     </b-card-group>
   </l-section>
@@ -14,6 +15,8 @@
 <script>
 import { mapActions } from "pinia";
 import { useBookStore } from "@/stores";
+
+import { formattingHelper } from "@/utils";
 
 import { LSection, CProductCard } from "@/components";
 
@@ -33,7 +36,10 @@ export default {
 
   created() {
     this.fetchBooks().then(({ books }) => {
-      this.books = books.slice(0, 4);
+      this.books = books.slice(0, 4).map((x) => ({
+        ...x,
+        publishedFormatted: formattingHelper.formatDate(x.published),
+      }));
     });
   },
 
