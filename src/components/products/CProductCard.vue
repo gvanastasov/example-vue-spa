@@ -7,20 +7,30 @@
     header-text-variant="white"
   >
     <template #header>
-      <h4 class="mb-0" style="min-height: 60px">{{ title }}</h4>
+      <h4 class="mb-0" style="min-height: 60px">
+        <slot name="title">{{ title }}</slot>
+      </h4>
     </template>
 
     <b-card-body style="min-height: 200px">
-      <b-card-text>{{ description }} </b-card-text>
+      <b-card-text
+        ><slot name="description">{{ description }}</slot></b-card-text
+      >
     </b-card-body>
 
     <b-list-group flush>
-      <b-list-group-item>{{ published }}</b-list-group-item>
-      <b-list-group-item>{{ category }}</b-list-group-item>
+      <b-list-group-item
+        ><slot name="date">{{ published }}</slot></b-list-group-item
+      >
+      <b-list-group-item
+        ><slot name="category">{{ category }}</slot></b-list-group-item
+      >
     </b-list-group>
 
     <template #footer>
-      <small class="text-muted" style="min-height: 60px">by {{ author }}</small>
+      <small class="text-muted" style="min-height: 60px"
+        ><slot name="author">by {{ author }}</slot></small
+      >
     </template>
   </b-card>
 </template>
@@ -32,23 +42,23 @@ export default {
   props: {
     title: {
       type: String,
-      required: true,
+      default: "",
     },
     description: {
       type: String,
-      required: true,
+      default: "",
     },
     published: {
       type: String,
-      required: true,
+      default: "",
     },
     category: {
       type: String,
-      required: true,
+      default: "",
     },
     author: {
       type: String,
-      required: true,
+      default: "",
     },
   },
 };
