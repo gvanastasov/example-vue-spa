@@ -25,6 +25,9 @@ const factory = Factory.extend({
   published() {
     return faker.date.recent(3600);
   },
+  available() {
+    return faker.date.recent(10);
+  },
   category() {
     return faker.helpers.arrayElement(categories);
   },
