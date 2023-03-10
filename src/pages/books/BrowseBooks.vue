@@ -20,7 +20,7 @@
         </b-list-group>
       </b-col>
       <b-col cols="10">
-        <c-product-grid></c-product-grid>
+        <c-product-grid :page-items-count="9"></c-product-grid>
       </b-col>
     </b-row>
   </b-container>
