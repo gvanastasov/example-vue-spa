@@ -28,7 +28,7 @@ const factory = Factory.extend({
   available() {
     return faker.date.recent(10);
   },
-  category() {
+  genre() {
     return faker.helpers.arrayElement(categories);
   },
   author() {

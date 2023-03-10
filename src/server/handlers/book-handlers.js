@@ -2,11 +2,33 @@ import { Response } from "miragejs";
 
 const handlers = function () {
   this.post("/books", (schema, request) => {
-    const { take, order, page, pageItemsCount } = JSON.parse(
+    const { take, order, page, pageItemsCount, facets } = JSON.parse(
       request.requestBody || "{}"
     );
 
     let result = schema.books.all().models;
+
+    const facetsInternal = [
+      {
+        name: "genre",
+        options: result.reduce((arr, book) => {
+          let existing = arr.find((x) => x.value === book.genre);
+          if (!existing) {
+            existing = { value: book.genre, count: 1, active: false };
+            arr.push(existing);
+          } else {
+            existing.count++;
+          }
+          return arr;
+        }, []),
+      },
+    ];
+
+    if (facets && facets.length) {
+      // todo: finish dummy facet
+      // const facet = facetsInternal.find(x => x.name === 'genre')
+      // result = result.filter(x => x.genre === facet.)
+    }
 
     const total = result.length;
 
@@ -49,7 +71,7 @@ const handlers = function () {
     return new Response(
       200,
       {},
-      { total, data: result, facets: { filters, sorting, pagination } }
+      { total, data: result, filters, sorting, pagination, facetsInternal }
     );
   });
 };

@@ -7,8 +7,8 @@ const ID = "book";
 
 const useUserStore = defineStore(ID, {
   actions: {
-    fetchBooks({ take, order, page, pageItemsCount } = {}) {
-      return post("/api/books", { take, order, page, pageItemsCount });
+    fetchBooks({ take, order, page, pageItemsCount, facets } = {}) {
+      return post("/api/books", { take, order, page, pageItemsCount, facets });
     },
   },
 });

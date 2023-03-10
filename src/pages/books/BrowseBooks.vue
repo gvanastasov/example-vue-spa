@@ -9,20 +9,7 @@
         </l-section>
       </b-col>
     </b-row>
-    <b-row>
-      <b-col cols="2">
-        <b-list-group>
-          <b-list-group-item variant="primary" active>Genre</b-list-group-item>
-          <b-list-group-item button>Button item</b-list-group-item>
-          <b-list-group-item button active variant="secondary"
-            >Active Button item</b-list-group-item
-          >
-        </b-list-group>
-      </b-col>
-      <b-col cols="10">
-        <c-product-grid :page-items-count="9"></c-product-grid>
-      </b-col>
-    </b-row>
+    <c-product-grid :page-items-count="9"></c-product-grid>
   </b-container>
 </template>
 

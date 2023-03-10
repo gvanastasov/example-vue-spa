@@ -23,7 +23,7 @@
         ><slot name="date">{{ published }}</slot></b-list-group-item
       >
       <b-list-group-item
-        ><slot name="category">{{ category }}</slot></b-list-group-item
+        ><slot name="genre">{{ genre }}</slot></b-list-group-item
       >
     </b-list-group>
 
@@ -52,7 +52,7 @@ export default {
       type: String,
       default: "",
     },
-    category: {
+    genre: {
       type: String,
       default: "",
     },
