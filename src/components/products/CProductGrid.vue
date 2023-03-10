@@ -1,5 +1,5 @@
 <template>
-  <b-card-group :deck="deck">
+  <b-card-group :deck="deck" columns>
     <c-product-card
       v-for="book in books"
       :key="book.id"
