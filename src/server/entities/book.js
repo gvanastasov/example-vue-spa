@@ -1,5 +1,6 @@
 import { Model, Factory } from "miragejs";
 import { faker } from "@faker-js/faker";
+import { contentHelper } from "@/utils";
 
 const ENTITY = "book";
 
@@ -16,7 +17,7 @@ const model = Model;
 
 const factory = Factory.extend({
   title() {
-    return faker.lorem.words();
+    return contentHelper().generateWords({ min: 1, max: 3 }).build();
   },
   description() {
     return faker.lorem.sentence();
