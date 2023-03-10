@@ -1,5 +1,11 @@
 <template>
-  <b-card title="Image Overlay" sub-title="Subtitle" no-body>
+  <b-card
+    title="Image Overlay"
+    sub-title="Subtitle"
+    no-body
+    header-bg-variant="primary"
+    header-text-variant="white"
+  >
     <template #header>
       <h4 class="mb-0">{{ title }}</h4>
     </template>
