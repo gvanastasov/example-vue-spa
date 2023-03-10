@@ -1,15 +1,4 @@
-import { LoremIpsum } from "lorem-ipsum";
-
-const lorem = new LoremIpsum({
-  sentencesPerParagraph: {
-    max: 8,
-    min: 4,
-  },
-  wordsPerSentence: {
-    max: 16,
-    min: 4,
-  },
-});
+import { faker } from "@faker-js/faker";
 
 const builder = () => ({
   output: "",
@@ -17,14 +6,14 @@ const builder = () => ({
   generateWords({ count, min, max }) {
     const countInternal =
       count ?? (min && max) ? getRandomInt(min, max) : undefined ?? 3;
-    this.output = lorem.generateWords(countInternal);
+    this.output = faker.lorem.words(countInternal);
     return this;
   },
 
   generateSentences({ count, min, max }) {
     const countInternal =
       count ?? (min && max) ? getRandomInt(min, max) : undefined ?? 3;
-    this.output = lorem.generateSentences(countInternal);
+    this.output = faker.lorem.sentences(countInternal);
     return this;
   },
 
@@ -49,4 +38,4 @@ const capitalizeFirstLetter = function (string) {
 };
 
 export default builder;
-export { lorem, getRandomInt, capitalizeFirstLetter };
+export { getRandomInt, capitalizeFirstLetter };
