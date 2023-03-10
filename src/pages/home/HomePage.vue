@@ -32,12 +32,10 @@
           <p>{{ sections.main.content }}</p>
         </l-section>
 
-        <c-product-grid
-          title="Check our latest books"
-          :take="4"
-          order="desc"
-          deck
-        ></c-product-grid>
+        <l-section>
+          <h3 class="text-center mb-5">Check our latest books</h3>
+          <c-product-grid :take="4" order="desc" deck></c-product-grid>
+        </l-section>
       </l-section-chain>
     </b-container>
   </div>

@@ -1,15 +1,12 @@
 <template>
-  <l-section>
-    <h3 v-if="title" class="text-center mb-5">{{ title }}</h3>
-    <b-card-group :deck="deck">
-      <c-product-card
-        v-for="book in books"
-        :key="book.id"
-        v-bind="book"
-        :published="book.publishedFormatted"
-      ></c-product-card>
-    </b-card-group>
-  </l-section>
+  <b-card-group :deck="deck">
+    <c-product-card
+      v-for="book in books"
+      :key="book.id"
+      v-bind="book"
+      :published="book.publishedFormatted"
+    ></c-product-card>
+  </b-card-group>
 </template>
 
 <script>
@@ -18,21 +15,16 @@ import { useBookStore } from "@/stores";
 
 import { formattingHelper } from "@/utils";
 
-import { LSection, CProductCard } from "@/components";
+import { CProductCard } from "@/components";
 
 export default {
   name: "CProductGrid",
 
   components: {
-    LSection,
     CProductCard,
   },
 
   props: {
-    title: {
-      type: String,
-      default: undefined,
-    },
     take: {
       type: Number,
       default: undefined,
