@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import CNavbar from "@/components/navbar/Navbar.vue";
+import { CNavbar } from "@/components";
 
 export default {
   name: "App",

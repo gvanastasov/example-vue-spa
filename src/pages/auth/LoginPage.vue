@@ -47,7 +47,7 @@
 import { mapActions } from "pinia";
 import { useUserStore } from "@/stores";
 
-import LPageDialog from "@/components/layouts/LPageDialog.vue";
+import { LPageDialog } from "@/components";
 
 export default {
   name: "LoginPage",

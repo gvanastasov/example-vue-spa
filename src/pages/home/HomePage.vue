@@ -39,10 +39,8 @@
 </template>
 
 <script>
-import LSection from "@/components/layouts/LSection.vue";
-import LSectionChain from "@/components/layouts/LSectionChain.vue";
-import { CProductGrid } from "@/components";
-import contentBuilder from "@/utils/content.js";
+import { LSection, LSectionChain, CProductGrid } from "@/components";
+import { contentHelper } from "@/utils";
 
 export default {
   name: "HomePage",
@@ -58,15 +56,15 @@ export default {
       slide: 0,
       slides: [...Array(10).keys()].map((x) => ({
         id: x,
-        title: contentBuilder()
+        title: contentHelper()
           .generateWords({ min: 1, max: 3 })
           .capitalizeFirstLetter()
           .build(),
-        text: contentBuilder().generateSentences({ min: 1, max: 3 }).build(),
+        text: contentHelper().generateSentences({ min: 1, max: 3 }).build(),
       })),
       sections: {
         main: {
-          content: contentBuilder().generateSentences({ count: 2 }).build(),
+          content: contentHelper().generateSentences({ count: 2 }).build(),
         },
       },
     };

@@ -119,7 +119,7 @@
 import { useVuelidate } from "@vuelidate/core";
 import { minLength, required, email, sameAs } from "@/validators";
 
-import LPageDialog from "@/components/layouts/LPageDialog.vue";
+import { LPageDialog } from "@/components";
 
 export default {
   name: "RegisterPage",

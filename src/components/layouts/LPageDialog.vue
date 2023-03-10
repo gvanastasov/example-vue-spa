@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import LCard from "@/components/layouts/LCard.vue";
+import { LCard } from "@/components";
 
 export default {
   name: "LPageDialog",
