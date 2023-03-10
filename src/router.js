@@ -5,12 +5,14 @@ import AboutPage from "@/pages/about/AboutPage.vue";
 import LoginPage from "@/pages/auth/LoginPage.vue";
 import NotFoundPage from "@/pages/404/NotFoundPage.vue";
 import RegisterPage from "@/pages/auth/RegisterPage.vue";
+import BrowseBooks from "@/pages/books/BrowseBooks.vue";
 
 const routes = [
   { name: "home", path: "/", component: HomePage },
   { name: "about", path: "/about", component: AboutPage },
   { name: "login", path: "/login", component: LoginPage },
   { name: "register", path: "/register", component: RegisterPage },
+  { name: "browse", path: "/browse", component: BrowseBooks },
   {
     name: "NotFound",
     path: "/:path(.*)*",
