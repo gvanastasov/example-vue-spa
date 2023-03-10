@@ -1,5 +1,6 @@
 // global
 export { default as CNavbar } from "./global/CNavbar.vue";
+export { default as CFooter } from "./global/CFooter.vue";
 
 // layout
 export { default as LCard } from "./layouts/LCard.vue";

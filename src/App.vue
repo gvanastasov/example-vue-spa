@@ -2,17 +2,19 @@
   <div>
     <c-navbar />
     <router-view></router-view>
+    <c-footer />
   </div>
 </template>
 
 <script>
-import { CNavbar } from "@/components";
+import { CNavbar, CFooter } from "@/components";
 
 export default {
   name: "App",
 
   components: {
     CNavbar,
+    CFooter,
   },
 };
 </script>
