@@ -28,6 +28,18 @@ export default {
     CProductCard,
   },
 
+  props: {
+    take: {
+      type: Number,
+      required: true,
+    },
+
+    order: {
+      type: String,
+      default: "asc",
+    },
+  },
+
   data() {
     return {
       books: [],
@@ -35,12 +47,14 @@ export default {
   },
 
   created() {
-    this.fetchBooks().then(({ books }) => {
-      this.books = books.slice(0, 4).map((x) => ({
-        ...x,
-        publishedFormatted: formattingHelper.formatDate(x.published),
-      }));
-    });
+    this.fetchBooks({ take: this.take, order: this.order }).then(
+      ({ books }) => {
+        this.books = books.map((x) => ({
+          ...x,
+          publishedFormatted: formattingHelper.formatDate(x.published),
+        }));
+      }
+    );
   },
 
   methods: {
