@@ -1,5 +1,5 @@
 const handlers = function () {
-  this.get("/books", (schema) => {
+  this.post("/books", (schema) => {
     return schema.books.all();
   });
 };

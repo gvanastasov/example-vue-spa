@@ -24,9 +24,9 @@ export function run({ environment = "development" } = {}) {
     },
 
     seeds(server) {
-      const { user } = entities;
-      server.create(user.ENTITY, { username: "admin", password: "password" });
-      server.createList(user.ENTITY, 5);
+      Object.keys(entities).forEach((x) =>
+        entities[x].seeds.call(this, server)
+      );
     },
 
     routes() {

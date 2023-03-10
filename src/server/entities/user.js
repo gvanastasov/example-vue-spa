@@ -23,4 +23,9 @@ const factory = Factory.extend({
   },
 });
 
-export { ENTITY, model, factory };
+const seeds = function (server) {
+  server.create(ENTITY, { username: "admin", password: "password" });
+  server.createList(ENTITY, 5);
+};
+
+export { ENTITY, model, factory, seeds };
