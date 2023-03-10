@@ -1,24 +1,34 @@
 import { Model, Factory } from "miragejs";
+import { faker } from "@faker-js/faker";
 
 const ENTITY = "book";
+
+const categories = [
+  "comedy",
+  "action",
+  "adventure",
+  "fentasy",
+  "sci-fi",
+  "horror",
+];
 
 const model = Model;
 
 const factory = Factory.extend({
   title() {
-    return "missing";
+    return faker.lorem.words();
   },
   description() {
-    return "missing";
+    return faker.lorem.sentence();
   },
   published() {
-    return "date";
+    return faker.date.recent();
   },
   category() {
-    return "category";
+    return faker.helpers.arrayElement(categories);
   },
   author() {
-    return "author";
+    return faker.name.fullName();
   },
 });
 
