@@ -6,21 +6,11 @@ import { post } from "@/api";
 const ID = "book";
 
 const useUserStore = defineStore(ID, {
-  state: () => {
-    return {
-      books: [],
-    };
-  },
-
   actions: {
     fetchBooks() {
-      return post("/api/books").then((data) => {
-        console.log(data);
-      });
+      return post("/api/books");
     },
   },
-
-  getters: {},
 });
 
 export default useUserStore;
