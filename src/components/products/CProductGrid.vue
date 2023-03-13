@@ -18,11 +18,6 @@
             opt.count
           }}</b-badge></b-list-group-item
         >
-
-        <!-- <b-list-group-item button>Button item</b-list-group-item>
-        <b-list-group-item button active variant="secondary"
-          >Active Button item</b-list-group-item
-        > -->
       </b-list-group>
     </b-col>
     <b-col :cols="hideFilters ? 12 : 10">
