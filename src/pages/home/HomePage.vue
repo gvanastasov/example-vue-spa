@@ -21,41 +21,38 @@
         <p>{{ s.text }}</p>
       </b-carousel-slide>
     </b-carousel>
-    <b-container>
-      <l-section-chain>
-        <l-section jumbo separator-top>
-          <template #header>Example Book Store</template>
-          <template #lead>
-            This is a simple bookstore website, used to showcase how to build
-            single page applications (SPA) with vue.js (major version 3).
-          </template>
-          <p>{{ sections.main.content }}</p>
-        </l-section>
+    <l-page title="Example Book Store">
+      <template #jumbo>
+        <p>
+          This is a simple bookstore website, used to showcase how to build
+          single page applications (SPA) with vue.js (major version 3).
+        </p>
+        <p>{{ sections.main.content }}</p>
+      </template>
 
-        <l-section separator-top>
-          <h3 class="text-center mb-5">Check our latest books</h3>
-          <c-product-grid
-            :take="4"
-            order="desc"
-            deck
-            hide-filters
-            hide-pagination
-          ></c-product-grid>
-        </l-section>
-      </l-section-chain>
-    </b-container>
+      <l-section separator-top>
+        <h3 class="text-center mb-5">Check our latest books</h3>
+        <c-product-grid
+          :take="4"
+          order="desc"
+          deck
+          hide-filters
+          hide-pagination
+        ></c-product-grid>
+      </l-section>
+    </l-page>
   </div>
 </template>
 
 <script>
-import { LSection, LSectionChain, CProductGrid } from "@/components";
+import { LPage, LSection, CProductGrid } from "@/components";
 import { contentHelper } from "@/utils";
 
 export default {
   name: "HomePage",
 
   components: {
-    LSectionChain,
+    LPage,
     LSection,
     CProductGrid,
   },
