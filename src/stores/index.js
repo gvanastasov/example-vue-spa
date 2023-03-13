@@ -1,8 +1,8 @@
 import { createPinia } from "pinia";
 
-import useUserStore from "./user/user";
-import useBookStore from "./book/book";
-import useShopStore from "./shop/shop";
+import useUserStore from "./user";
+import useBookStore from "./book";
+import useShopStore from "./shop";
 
 const piniaStore = createPinia();
 
