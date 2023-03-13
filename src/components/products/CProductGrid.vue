@@ -53,7 +53,7 @@
           ></c-product-card>
         </b-skeleton-wrapper>
       </b-card-group>
-      <div class="my-3">
+      <div v-if="!hidePagination" class="my-3">
         <b-pagination
           :model-value="pagination.current"
           :per-page="pageItemsCount"
@@ -98,6 +98,11 @@ export default {
     },
 
     hideFilters: {
+      type: Boolean,
+      default: false,
+    },
+
+    hidePagination: {
       type: Boolean,
       default: false,
     },
