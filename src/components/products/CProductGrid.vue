@@ -173,7 +173,6 @@ export default {
           publishedFormatted: formattingHelper.formatDate(x.published),
         }));
         this.loading = false;
-        // this.pagination.current = page;
         this.pagination.total = total;
         this.facets = facets;
       });
