@@ -140,13 +140,12 @@ export default {
       this.fetchGridData(page - 1);
     },
 
-    handleFacetClick(facet, opt) {
-      opt.active = true;
-      this.fetchGridData(0, [facet]);
+    handleFacetClick(_facet, opt) {
+      opt.active = !opt.active;
+      this.fetchGridData(0, this.facets);
     },
 
     fetchGridData(page, facets = []) {
-      console.log("fetch ", page);
       this.fetchBooks({
         take: this.take,
         order: this.order,
@@ -159,6 +158,7 @@ export default {
           publishedFormatted: formattingHelper.formatDate(x.published),
         }));
         this.loading = false;
+        // this.pagination.current = page;
         this.pagination.total = total;
         this.facets = facets;
       });

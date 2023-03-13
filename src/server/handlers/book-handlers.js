@@ -8,26 +8,36 @@ const handlers = function () {
 
     let result = schema.books.all().models;
 
-    const facetsInternal = [
-      {
-        name: "genre",
+    // NOTE: this is very naive facet pattern implementation just for the
+    // showcase purpose.
+    const facetsInternal = ["genre"].map((prop) => {
+      return {
+        name: prop,
         options: result.reduce((arr, book) => {
-          let existing = arr.find((x) => x.value === book.genre);
+          let existing = arr.find((x) => x.value === book[prop]);
           if (!existing) {
-            existing = { value: book.genre, count: 1, active: false };
+            existing = { value: book[prop], count: 1, active: false };
             arr.push(existing);
           } else {
             existing.count++;
           }
           return arr;
         }, []),
-      },
-    ];
+      };
+    });
 
     if (facets && facets.length) {
-      // todo: finish dummy facet
-      // const facet = facetsInternal.find(x => x.name === 'genre')
-      // result = result.filter(x => x.genre === facet.)
+      facets.forEach((facet) => {
+        facet.options.forEach((option) => {
+          if (option.active) {
+            result = result.filter((x) => x[facet.name] === option.value);
+
+            facetsInternal
+              .find((x) => x.name === facet.name)
+              .options.find((x) => x.value === option.value).active = true;
+          }
+        });
+      });
     }
 
     const total = result.length;
@@ -71,7 +81,14 @@ const handlers = function () {
     return new Response(
       200,
       {},
-      { total, data: result, filters, sorting, pagination, facetsInternal }
+      {
+        total,
+        data: result,
+        filters,
+        sorting,
+        pagination,
+        facets: facetsInternal,
+      }
     );
   });
 };
