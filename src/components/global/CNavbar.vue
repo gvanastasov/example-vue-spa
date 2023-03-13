@@ -8,7 +8,7 @@
       <b-navbar-nav>
         <b-nav-item :to="{ name: 'home' }">Home</b-nav-item>
         <b-nav-item :to="{ name: 'browse' }">Books</b-nav-item>
-        <b-nav-item href="#">Stores</b-nav-item>
+        <b-nav-item :to="{ name: 'shops' }">Shops</b-nav-item>
         <b-nav-item href="#">About</b-nav-item>
       </b-navbar-nav>
 

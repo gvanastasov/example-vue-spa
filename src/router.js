@@ -6,6 +6,7 @@ import LoginPage from "@/pages/auth/LoginPage.vue";
 import NotFoundPage from "@/pages/404/NotFoundPage.vue";
 import RegisterPage from "@/pages/auth/RegisterPage.vue";
 import BrowseBooks from "@/pages/books/BrowseBooks.vue";
+import ShopsPage from "@/pages/shops/ShopsPage.vue";
 
 const routes = [
   { name: "home", path: "/", component: HomePage },
@@ -13,6 +14,7 @@ const routes = [
   { name: "login", path: "/login", component: LoginPage },
   { name: "register", path: "/register", component: RegisterPage },
   { name: "browse", path: "/browse", component: BrowseBooks },
+  { name: "shops", path: "/shops", component: ShopsPage },
   {
     name: "NotFound",
     path: "/:path(.*)*",
