@@ -1,6 +1,21 @@
 <template>
   <b-row>
     <b-col v-if="!hideFilters" cols="2">
+      <b-skeleton-wrapper :loading="loading">
+        <template #loading>
+          <b-list-group>
+            <b-list-group-item variant="primary" active>
+              <b-skeleton width="50%"></b-skeleton>
+            </b-list-group-item>
+            <b-list-group-item button>
+              <b-skeleton width="75%"></b-skeleton>
+            </b-list-group-item>
+            <b-list-group-item button>
+              <b-skeleton width="75%"></b-skeleton>
+            </b-list-group-item>
+          </b-list-group>
+        </template>
+      </b-skeleton-wrapper>
       <b-list-group v-for="facet in facets" :key="`facet_${facet.name}`">
         <b-list-group-item variant="primary" active>{{
           facet.name
