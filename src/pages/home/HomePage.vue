@@ -32,13 +32,14 @@
           <p>{{ sections.main.content }}</p>
         </l-section>
 
-        <l-section>
+        <l-section separator-top>
           <h3 class="text-center mb-5">Check our latest books</h3>
           <c-product-grid
             :take="4"
             order="desc"
             deck
             hide-filters
+            hide-pagination
           ></c-product-grid>
         </l-section>
       </l-section-chain>
