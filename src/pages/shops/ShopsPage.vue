@@ -1,10 +1,8 @@
 <template>
-  <b-container>
-    <l-section jumbo class="mt-5">
-      <template #header>Shops</template>
-      <template #lead> </template>
+  <l-page title="Shops">
+    <template #jumbo>
       <p>{{ sections.main.content }}</p>
-    </l-section>
+    </template>
     <b-card-group :deck="deck" columns>
       <l-card v-for="(shop, idx) in shops.data" :key="idx">
         <b-card-text>{{ shop.address.city }}</b-card-text>
@@ -16,21 +14,21 @@
         >
       </l-card>
     </b-card-group>
-  </b-container>
+  </l-page>
 </template>
 
 <script>
 import { mapActions } from "pinia";
 import { useShopStore } from "@/stores";
 
-import { LSection, LCard } from "@/components";
+import { LPage, LCard } from "@/components";
 import { contentHelper } from "@/utils";
 
 export default {
   name: "ShopsPage",
 
   components: {
-    LSection,
+    LPage,
     LCard,
   },
 
