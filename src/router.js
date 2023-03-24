@@ -5,7 +5,7 @@ import AboutPage from "@/pages/about/AboutPage.vue";
 import LoginPage from "@/pages/auth/LoginPage.vue";
 import NotFoundPage from "@/pages/404/NotFoundPage.vue";
 import RegisterPage from "@/pages/auth/RegisterPage.vue";
-import BrowseBooks from "@/pages/books/BrowseBooks.vue";
+import BookBrowsePage from "@/pages/books/BookBrowsePage.vue";
 import ShopsPage from "@/pages/shops/ShopsPage.vue";
 
 const routes = [
@@ -13,7 +13,7 @@ const routes = [
   { name: "about", path: "/about", component: AboutPage },
   { name: "login", path: "/login", component: LoginPage },
   { name: "register", path: "/register", component: RegisterPage },
-  { name: "browse", path: "/browse", component: BrowseBooks },
+  { name: "browse", path: "/browse", component: BookBrowsePage },
   { name: "shops", path: "/shops", component: ShopsPage },
   {
     name: "NotFound",

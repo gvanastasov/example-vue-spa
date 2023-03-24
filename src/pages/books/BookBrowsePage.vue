@@ -18,7 +18,7 @@ import { LSection, CProductGrid } from "@/components";
 import { contentHelper } from "@/utils";
 
 export default {
-  name: "BrowseBooks",
+  name: "BookBrowsePage",
 
   components: {
     LSection,
