@@ -6,6 +6,7 @@ import LoginPage from "@/pages/auth/LoginPage.vue";
 import NotFoundPage from "@/pages/404/NotFoundPage.vue";
 import RegisterPage from "@/pages/auth/RegisterPage.vue";
 import BookBrowsePage from "@/pages/books/BookBrowsePage.vue";
+import BookDetailsPage from "@/pages/books/BookDetailsPage.vue";
 import ShopsPage from "@/pages/shops/ShopsPage.vue";
 
 const routes = [
@@ -14,6 +15,18 @@ const routes = [
   { name: "login", path: "/login", component: LoginPage },
   { name: "register", path: "/register", component: RegisterPage },
   { name: "browse", path: "/browse", component: BookBrowsePage },
+  {
+    name: "shop",
+    path: "/shop",
+    children: [
+      {
+        name: "book-details",
+        path: ":bookId",
+        component: BookDetailsPage,
+        props: true,
+      },
+    ],
+  },
   { name: "shops", path: "/shops", component: ShopsPage },
   {
     name: "NotFound",
