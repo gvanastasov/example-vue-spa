@@ -10,6 +10,7 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
+    publicPath: "/",
   },
   resolve: {
     alias: {
@@ -23,9 +24,7 @@ module.exports = {
     },
     port: 9000,
     open: true,
-    historyApiFallback: {
-      index: "index.html",
-    },
+    historyApiFallback: true,
   },
   stats: {
     colors: true,
