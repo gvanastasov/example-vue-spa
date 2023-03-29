@@ -5,6 +5,8 @@
     no-body
     header-bg-variant="primary"
     header-text-variant="white"
+    :class="[{ 'c-product-card': link }]"
+    @click="handleCardClick"
   >
     <template #header>
       <h4 class="mb-0" style="min-height: 60px">
@@ -40,6 +42,10 @@ export default {
   name: "CProductCard",
 
   props: {
+    id: {
+      type: String,
+      default: undefined,
+    },
     title: {
       type: String,
       default: "",
@@ -60,6 +66,27 @@ export default {
       type: String,
       default: "",
     },
+    link: {
+      type: Boolean,
+      default: true,
+    },
+  },
+
+  methods: {
+    handleCardClick() {
+      if (this.id) {
+        this.$router.push({
+          name: "book-details",
+          params: { bookId: this.id },
+        });
+      }
+    },
   },
 };
 </script>
+
+<style lang="scss">
+.c-product-card {
+  cursor: pointer;
+}
+</style>
