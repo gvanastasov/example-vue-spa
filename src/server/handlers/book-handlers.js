@@ -91,6 +91,11 @@ const handlers = function () {
       }
     );
   });
+
+  this.get("/books/:id", (schema, request) => {
+    let id = request.params.id;
+    return schema.books.find(id);
+  });
 };
 
 export default handlers;
