@@ -8,6 +8,7 @@ import RegisterPage from "@/pages/auth/RegisterPage.vue";
 import BookBrowsePage from "@/pages/books/BookBrowsePage.vue";
 import BookDetailsPage from "@/pages/books/BookDetailsPage.vue";
 import ShopsPage from "@/pages/shops/ShopsPage.vue";
+import CheckoutBasketPage from "@/pages/checkout/CheckoutBasketPage.vue";
 
 const routes = [
   { name: "home", path: "/", component: HomePage },
@@ -19,6 +20,11 @@ const routes = [
     name: "shop",
     path: "/shop",
     children: [
+      {
+        name: "checkout-basket",
+        path: "basket",
+        component: CheckoutBasketPage,
+      },
       {
         name: "book-details",
         path: ":bookId",
