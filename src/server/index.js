@@ -18,14 +18,16 @@ export function run({ environment = "development" } = {}) {
     factories: {
       ...Object.keys(entities).reduce((factories, cur) => {
         const { factory, ENTITY } = entities[cur];
-        factories[ENTITY] = factory;
+        if (factory) {
+          factories[ENTITY] = factory;
+        }
         return factories;
       }, {}),
     },
 
     seeds(server) {
       Object.keys(entities).forEach((x) =>
-        entities[x].seeds.call(this, server)
+        entities[x].seeds?.call(this, server)
       );
     },
 
