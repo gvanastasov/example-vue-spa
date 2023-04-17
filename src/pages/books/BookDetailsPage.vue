@@ -75,7 +75,9 @@ export default {
     }),
 
     handleBuyButtonClick() {
-      this.cartAdd({ code: this.book.id });
+      this.cartAdd({ code: this.book.id }).then(() => {
+        this.$router.push({ name: "checkout-basket" });
+      });
     },
   },
 };
