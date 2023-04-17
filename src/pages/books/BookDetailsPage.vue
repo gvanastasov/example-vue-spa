@@ -8,6 +8,12 @@
             <b-col>{{ prop.name }}</b-col>
             <b-col>{{ prop.value }}</b-col>
           </b-row>
+          <b-button
+            variant="primary"
+            class="w-100 mt-3"
+            @click="handleBuyButtonClick"
+            >Buy</b-button
+          >
         </b-col>
       </template>
     </b-row>
@@ -16,7 +22,7 @@
 
 <script>
 import { mapActions } from "pinia";
-import { useBookStore } from "@/stores";
+import { useBookStore, useCartStore } from "@/stores";
 
 export default {
   name: "BookDetailsPage",
@@ -63,6 +69,14 @@ export default {
     ...mapActions(useBookStore, {
       fetchBook: "fetchBook",
     }),
+
+    ...mapActions(useCartStore, {
+      cartAdd: "cartAdd",
+    }),
+
+    handleBuyButtonClick() {
+      this.cartAdd({ code: this.book.id });
+    },
   },
 };
 </script>
