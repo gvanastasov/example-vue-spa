@@ -10,7 +10,18 @@ const handlers = function () {
     const context = ensureContext(schema);
     const { code } = JSON.parse(request.requestBody);
 
-    context.update("items", [...context.items, code]);
+    const book = schema.books.all().models.find((x) => x.id === code);
+    const product = { id: book.id, displayName: book.title, price: book.price };
+
+    context.update({
+      items: [...context.items, product],
+      priceTotal: {
+        value: (
+          Number(context.priceTotal.value) + Number(book.price.value)
+        ).toFixed(2),
+        unit: "€",
+      },
+    });
 
     return context;
   });
@@ -37,7 +48,11 @@ function ensureContext(schema) {
 
   let context = schema.carts.find(contextId);
   if (!context) {
-    context = schema.carts.new({ id: contextId, items: [] });
+    context = schema.carts.new({
+      id: contextId,
+      priceTotal: { value: 0, unit: "€" },
+      items: [],
+    });
     context.save();
   }
 

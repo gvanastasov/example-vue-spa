@@ -34,6 +34,12 @@ const factory = Factory.extend({
   author() {
     return faker.name.fullName();
   },
+  price() {
+    return {
+      value: faker.commerce.price(10, 50),
+      unit: "€",
+    };
+  },
 });
 
 const seeds = function (server) {
