@@ -4,7 +4,7 @@
       <template #header>Checkout</template>
     </l-section>
     <l-section>
-      <l-accordion :active="stepCurrent" @change="handleAccordionChange">
+      <l-accordion :active="stepCurrent" @change="handleAccordionChangeEvent">
         <l-accordion-item
           v-for="(step, idx) in steps"
           :key="idx"
@@ -22,22 +22,32 @@
           <template #accordion-content>
             <component
               :is="step.route.component"
-              @completed="handleCompleted(step)"
+              @completed="handleStepCompletedEvent(step)"
             ></component>
           </template>
         </l-accordion-item>
       </l-accordion>
-      <b-button class="w-100" :disabled="!canOrder">Order</b-button>
+      <b-button
+        class="w-100"
+        :disabled="!canOrder"
+        @click="handleOrderButtonClick"
+        >Order</b-button
+      >
     </l-section>
   </b-container>
 </template>
 
 <script>
 import { shallowRef } from "vue";
+import { mapActions } from "pinia";
+import { useCartStore } from "@/stores";
+
 import { LSection, LAccordion, LAccordionItem } from "@/components";
 
-import { step as deliveryStep } from "./CheckoutDeliveryPage.vue";
-import { step as receiptStep } from "./CheckoutReceiptPage.vue";
+import { step as billingStep } from "./CheckoutBillingPage.vue";
+import { step as customerStep } from "./CheckoutCustomerPage.vue";
+import { step as shippingStep } from "./CheckoutShippingPage.vue";
+import { step as previewStep } from "./CheckoutRreviewPage.vue";
 
 export default {
   name: "CheckoutPage",
@@ -63,15 +73,17 @@ export default {
     const startIndex = 0;
     return {
       stepCurrent: startIndex,
-      steps: [deliveryStep, receiptStep].map((x) => ({
-        title: x.title,
-        route: {
-          name: x.route.name,
-          path: x.route.path,
-          component: shallowRef(x.route.component),
-        },
-        completed: false,
-      })),
+      steps: [customerStep, shippingStep, billingStep, previewStep].map(
+        (x) => ({
+          title: x.title,
+          route: {
+            name: x.route.name,
+            path: x.route.path,
+            component: shallowRef(x.route.component),
+          },
+          completed: false,
+        })
+      ),
     };
   },
 
@@ -82,18 +94,33 @@ export default {
   },
 
   methods: {
-    handleAccordionChange(index) {
+    ...mapActions(useCartStore, {
+      cartOrder: "cartOrder",
+    }),
+    handleAccordionChangeEvent(index) {
       if (index !== null) {
         this.stepCurrent = index;
         const next = this.steps[index].route.name;
         this.$router.push({ name: next });
       }
     },
-    handleCompleted(step) {
+
+    handleStepCompletedEvent(step) {
       step.completed = true;
-      this.stepCurrent++;
-      const next = this.steps[this.stepCurrent].route.name;
-      this.$router.push({ name: next });
+
+      if (this.steps.length > this.stepCurrent + 1) {
+        this.stepCurrent++;
+        const next = this.steps[this.stepCurrent].route.name;
+        this.$router.push({ name: next });
+      } else {
+        this.stepCurrent = null;
+      }
+    },
+
+    handleOrderButtonClick() {
+      this.cartOrder().then(() => {
+        this.$router.push({ name: "checkout-receipt" });
+      });
     },
   },
 };

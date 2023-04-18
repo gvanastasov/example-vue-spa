@@ -10,8 +10,10 @@ import BookDetailsPage from "@/pages/books/BookDetailsPage.vue";
 import ShopsPage from "@/pages/shops/ShopsPage.vue";
 import CheckoutBasketPage from "@/pages/checkout/CheckoutBasketPage.vue";
 import CheckoutPage from "@/pages/checkout/CheckoutPage.vue";
-import { step as checkoutDeliveryStep } from "@/pages/checkout/CheckoutDeliveryPage.vue";
-import { step as checkoutReceiptPapge } from "@/pages/checkout/CheckoutReceiptPage.vue";
+import { step as checkoutCustomerStep } from "@/pages/checkout/CheckoutCustomerPage.vue";
+import { step as checkoutShippingStep } from "@/pages/checkout/CheckoutShippingPage.vue";
+import { step as checkoutBillingStep } from "@/pages/checkout/CheckoutBillingPage.vue";
+import { step as checkoutPreviewPapge } from "@/pages/checkout/CheckoutRreviewPage.vue";
 
 const routes = [
   { name: "home", path: "/", component: HomePage },
@@ -32,9 +34,12 @@ const routes = [
         name: "checkout",
         path: "checkout",
         component: CheckoutPage,
-        children: [checkoutDeliveryStep, checkoutReceiptPapge].map(
-          (x) => x.route
-        ),
+        children: [
+          checkoutCustomerStep,
+          checkoutShippingStep,
+          checkoutBillingStep,
+          checkoutPreviewPapge,
+        ].map((x) => x.route),
       },
       {
         name: "book-details",
