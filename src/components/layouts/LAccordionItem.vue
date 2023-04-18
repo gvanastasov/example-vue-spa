@@ -27,7 +27,12 @@ export default {
   name: "LAccordion",
   inject: ["Accordion"],
 
-  props: {},
+  props: {
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       index: null,
@@ -44,6 +49,9 @@ export default {
 
   methods: {
     open() {
+      if (this.disabled) {
+        return;
+      }
       if (this.visible) {
         this.Accordion.active = null;
       } else {

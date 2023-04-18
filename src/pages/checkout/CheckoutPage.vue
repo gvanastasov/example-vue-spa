@@ -8,14 +8,22 @@
         <l-accordion-item
           v-for="(step, idx) in steps"
           :key="idx"
+          :disabled="idx !== 0 && !steps[Math.max(0, idx - 1)].completed"
+          :class="{
+            'checkout-step--active': idx === stepCurrent,
+            'checkout-step--completed': step.completed,
+          }"
           class="checkout-step"
-          :class="{ 'checkout-step--active': idx === stepCurrent }"
         >
           <template #accordion-trigger>
             <h3>{{ step.title }}</h3>
+            <div v-if="step.completed" class="checkout-step_checkmark"></div>
           </template>
           <template #accordion-content>
-            <component :is="step.route.component"></component>
+            <component
+              :is="step.route.component"
+              @completed="handleCompleted(step)"
+            ></component>
           </template>
         </l-accordion-item>
       </l-accordion>
@@ -52,8 +60,9 @@ export default {
   },
 
   data() {
+    const startIndex = 0;
     return {
-      stepCurrent: 0,
+      stepCurrent: startIndex,
       steps: [deliveryStep, receiptStep].map((x) => ({
         title: x.title,
         route: {
@@ -80,6 +89,12 @@ export default {
         this.$router.push({ name: next });
       }
     },
+    handleCompleted(step) {
+      step.completed = true;
+      this.stepCurrent++;
+      const next = this.steps[this.stepCurrent].route.name;
+      this.$router.push({ name: next });
+    },
   },
 };
 </script>
@@ -93,8 +108,24 @@ export default {
   padding: 20px;
   opacity: 0.4;
 
-  &--active {
+  &--active,
+  &--completed {
     opacity: 1;
+  }
+
+  &_checkmark {
+    display: inline-block;
+    transform: rotate(45deg);
+    height: 16px;
+    width: 9px;
+    border-bottom: 4px solid #6f42c1;
+    border-right: 4px solid #6f42c1;
+    border-right-color: rgb(111, 66, 193);
+    border-right-style: solid;
+    border-right-width: 4px;
+    position: relative;
+    top: 10px;
+    left: -15px;
   }
 }
 </style>

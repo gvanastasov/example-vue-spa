@@ -1,10 +1,22 @@
 <template>
-  <div>Delivery</div>
+  <div>
+    <p>Delivery</p>
+    <b-button @click="handleNextButtonClick">Next</b-button>
+  </div>
 </template>
 
 <script>
 const component = {
   name: "CheckoutDeliveryPage",
+
+  emits: ["completed"],
+
+  methods: {
+    handleNextButtonClick() {
+      const payload = {};
+      this.$emit("completed", payload);
+    },
+  },
 };
 
 const step = {
