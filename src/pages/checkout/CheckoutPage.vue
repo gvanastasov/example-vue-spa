@@ -62,12 +62,17 @@ export default {
 
   methods: {
     handleAccordionChange(index) {
-      this.stepCurrent = index;
-      const next = this.steps[index].route.name;
-      this.$router.push({ name: next });
+      if (index !== null) {
+        this.stepCurrent = index;
+        const next = this.steps[index].route.name;
+        this.$router.push({ name: next });
+      }
     },
   },
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.checkout-step {
+}
+</style>
