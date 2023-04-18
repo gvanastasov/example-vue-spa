@@ -16,6 +16,9 @@ const useCartStore = defineStore(ID, {
     cartRemove({ code }) {
       return del("/api/cart", { code });
     },
+    cartOrder() {
+      return post("/api/cart/order");
+    },
   },
 });
 

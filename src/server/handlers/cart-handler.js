@@ -1,5 +1,7 @@
 import { setCookie, getCookie } from "../cookies";
 
+const CURRENTCY_DEFAULT = "€";
+
 const handlers = function () {
   this.get("/cart", (schema) => {
     const context = ensureContext(schema);
@@ -19,7 +21,7 @@ const handlers = function () {
         value: (
           Number(context.priceTotal.value) + Number(book.price.value)
         ).toFixed(2),
-        unit: "€",
+        unit: CURRENTCY_DEFAULT,
       },
     });
 
@@ -39,11 +41,25 @@ const handlers = function () {
           0,
           Number(context.priceTotal.value) - Number(book.price.value)
         ),
-        unit: "€",
+        unit: CURRENTCY_DEFAULT,
       },
     });
 
     return context;
+  });
+
+  this.post("/cart/order", (schema) => {
+    const context = ensureContext(schema);
+    context.update({
+      items: [],
+      priceTotal: {
+        value: (0).toFixed(2),
+        unit: CURRENTCY_DEFAULT,
+      },
+      po: `PO${Date.now}`,
+    });
+
+    return;
   });
 };
 
@@ -70,8 +86,9 @@ function ensureContext(schema) {
   if (!context) {
     context = schema.carts.new({
       id: contextId,
-      priceTotal: { value: 0, unit: "€" },
+      priceTotal: { value: 0, unit: CURRENTCY_DEFAULT },
       items: [],
+      po: null,
     });
     context.save();
   }
