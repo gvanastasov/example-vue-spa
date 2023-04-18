@@ -6,26 +6,38 @@
     <l-section>
       <template v-if="networking">Loading...</template>
       <template v-else>
-        <ul v-if="hasItems">
-          <li
-            v-for="(item, idx) in cart.items"
-            :key="`${item.id}_${idx}`"
-            class="checkout-basket-item"
-          >
-            <div class="checkout-basket-item_name">{{ item.displayName }}</div>
-            <div>
-              <span class="checkout-basket-item_price"
-                >{{ item.price.unit }}{{ item.price.value }}</span
-              >
-              <b-button
-                variant="link"
-                class="checkout-basket-item_remove"
-                @click="handleRemoveItemClick(item)"
-                >x</b-button
-              >
-            </div>
-          </li>
-        </ul>
+        <template v-if="hasItems">
+          <ul>
+            <li
+              v-for="(item, idx) in cart.items"
+              :key="`${item.id}_${idx}`"
+              class="checkout-basket-item"
+            >
+              <div class="checkout-basket-item_name">
+                {{ item.displayName }}
+              </div>
+              <div>
+                <span class="checkout-basket-item_price"
+                  >{{ item.price.unit }}{{ item.price.value }}</span
+                >
+                <b-button
+                  variant="link"
+                  class="checkout-basket-item_remove"
+                  @click="handleRemoveItemClick(item)"
+                  >x</b-button
+                >
+              </div>
+            </li>
+          </ul>
+          <p class="text-center">
+            Total:
+            <strong
+              >{{ cart.priceTotal.unit }}{{ cart.priceTotal.value }}</strong
+            >
+            <br />
+            <b-button :to="{ name: 'browse' }" class="mt-3">Checkout</b-button>
+          </p>
+        </template>
         <p v-else class="text-center">
           Cart is empty...
           <br />
@@ -103,6 +115,7 @@ export default {
     justify-content: space-between;
     border: 1px solid #6f42c1;
     border-radius: 4px;
+    margin-bottom: 20px;
 
     &_name {
       padding: 20px;
