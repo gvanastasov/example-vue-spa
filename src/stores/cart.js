@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-import { get, post } from "@/api";
+import { get, post, del } from "@/api";
 
 // todo: add namespacing and export for easy access
 const ID = "cart";
@@ -12,6 +12,9 @@ const useCartStore = defineStore(ID, {
     },
     cartAdd({ code }) {
       return post("/api/cart", { code });
+    },
+    cartRemove({ code }) {
+      return del("/api/cart", { code });
     },
   },
 });

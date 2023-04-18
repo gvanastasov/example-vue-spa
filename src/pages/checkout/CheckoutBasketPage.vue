@@ -6,7 +6,7 @@
     <l-section>
       <template v-if="networking">Loading...</template>
       <template v-else>
-        <ul>
+        <ul v-if="hasItems">
           <li
             v-for="(item, idx) in cart.items"
             :key="`${item.id}_${idx}`"
@@ -26,6 +26,18 @@
             </div>
           </li>
         </ul>
+        <p v-else class="text-center">
+          Cart is empty...
+          <br />
+          Checkout our webshop and find a book for youself.
+          <br />
+          <b-button
+            :to="{ name: 'browse' }"
+            variant="outline-primary"
+            class="mt-3"
+            >Browse</b-button
+          >
+        </p>
       </template>
     </l-section>
   </b-container>
@@ -51,6 +63,12 @@ export default {
     };
   },
 
+  computed: {
+    hasItems() {
+      return Boolean(this.cart?.items.length);
+    },
+  },
+
   created() {
     this.cartFetch().then(({ cart }) => {
       this.networking = false;
@@ -61,10 +79,13 @@ export default {
   methods: {
     ...mapActions(useCartStore, {
       cartFetch: "cartFetch",
+      cartRemove: "cartRemove",
     }),
 
     handleRemoveItemClick(item) {
-      console.log(`Remove item with name id ${item.id}`);
+      this.cartRemove({ code: item.id }).then(({ cart }) => {
+        this.cart = cart;
+      });
     },
   },
 };

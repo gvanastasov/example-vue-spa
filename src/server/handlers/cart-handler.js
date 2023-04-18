@@ -25,6 +25,26 @@ const handlers = function () {
 
     return context;
   });
+
+  this.delete("/cart", (schema, request) => {
+    const context = ensureContext(schema);
+    const { code } = JSON.parse(request.requestBody);
+
+    const book = context.items.find((x) => x.id === code);
+
+    context.update({
+      items: [...context.items.filter((x) => x.id !== code)],
+      priceTotal: {
+        value: Math.max(
+          0,
+          Number(context.priceTotal.value) - Number(book.price.value)
+        ),
+        unit: "€",
+      },
+    });
+
+    return context;
+  });
 };
 
 /**

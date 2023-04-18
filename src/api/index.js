@@ -15,6 +15,9 @@ export const post = (url, data) => {
   });
 };
 
-export const del = (url) => {
-  return fetch(url, { method: "POST" });
+export const del = (url, data) => {
+  return sendRequest(url, {
+    method: "DELETE",
+    body: JSON.stringify(data),
+  });
 };
