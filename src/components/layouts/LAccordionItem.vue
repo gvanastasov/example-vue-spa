@@ -5,7 +5,6 @@
       :class="{ accordion__trigger_active: visible }"
       @click="open"
     >
-      <!-- This slot will handle the title/header of the accordion and is the part you click on -->
       <slot name="accordion-trigger"></slot>
     </div>
 
@@ -17,10 +16,7 @@
       @after-leave="end"
     >
       <div v-show="visible" class="accordion__content">
-        <ul>
-          <!-- This slot will handle all the content that is passed to the accordion -->
-          <slot name="accordion-content"></slot>
-        </ul>
+        <slot name="accordion-content"></slot>
       </div>
     </transition>
   </li>
@@ -67,8 +63,6 @@ export default {
 <style lang="scss" scoped>
 .accordion__item {
   cursor: pointer;
-  padding: 10px 20px 10px 40px;
-  border-bottom: 1px solid #ebebeb;
   position: relative;
 }
 

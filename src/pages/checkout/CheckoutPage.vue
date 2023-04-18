@@ -5,7 +5,12 @@
     </l-section>
     <l-section>
       <l-accordion :active="stepCurrent" @change="handleAccordionChange">
-        <l-accordion-item v-for="(step, idx) in steps" :key="idx">
+        <l-accordion-item
+          v-for="(step, idx) in steps"
+          :key="idx"
+          class="checkout-step"
+          :class="{ 'checkout-step--active': idx === stepCurrent }"
+        >
           <template #accordion-trigger>
             <h3>{{ step.title }}</h3>
           </template>
@@ -14,6 +19,7 @@
           </template>
         </l-accordion-item>
       </l-accordion>
+      <b-button class="w-100" :disabled="!canOrder">Order</b-button>
     </l-section>
   </b-container>
 </template>
@@ -60,6 +66,12 @@ export default {
     };
   },
 
+  computed: {
+    canOrder() {
+      return this.steps.every((x) => x.completed === true);
+    },
+  },
+
   methods: {
     handleAccordionChange(index) {
       if (index !== null) {
@@ -74,5 +86,15 @@ export default {
 
 <style lang="scss">
 .checkout-step {
+  display: block;
+  border: 1px solid #6f42c1;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  padding: 20px;
+  opacity: 0.4;
+
+  &--active {
+    opacity: 1;
+  }
 }
 </style>
