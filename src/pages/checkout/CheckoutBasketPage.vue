@@ -35,7 +35,9 @@
               >{{ cart.priceTotal.unit }}{{ cart.priceTotal.value }}</strong
             >
             <br />
-            <b-button :to="{ name: 'browse' }" class="mt-3">Checkout</b-button>
+            <b-button :to="{ name: 'checkout' }" class="mt-3"
+              >Checkout</b-button
+            >
           </p>
         </template>
         <p v-else class="text-center">
