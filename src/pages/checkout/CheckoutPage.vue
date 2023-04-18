@@ -4,35 +4,38 @@
       <template #header>Checkout</template>
     </l-section>
     <l-section>
-      <l-accordion :active="stepCurrent" @change="handleAccordionChangeEvent">
-        <l-accordion-item
-          v-for="(step, idx) in steps"
-          :key="idx"
-          :disabled="idx !== 0 && !steps[Math.max(0, idx - 1)].completed"
-          :class="{
-            'checkout-step--active': idx === stepCurrent,
-            'checkout-step--completed': step.completed,
-          }"
-          class="checkout-step"
+      <router-view v-if="completed"></router-view>
+      <template v-else>
+        <l-accordion :active="stepCurrent" @change="handleAccordionChangeEvent">
+          <l-accordion-item
+            v-for="(step, idx) in steps"
+            :key="idx"
+            :disabled="idx !== 0 && !steps[Math.max(0, idx - 1)].completed"
+            :class="{
+              'checkout-step--active': idx === stepCurrent,
+              'checkout-step--completed': step.completed,
+            }"
+            class="checkout-step"
+          >
+            <template #accordion-trigger>
+              <h3>{{ step.title }}</h3>
+              <div v-if="step.completed" class="checkout-step_checkmark"></div>
+            </template>
+            <template #accordion-content>
+              <component
+                :is="step.route.component"
+                @completed="handleStepCompletedEvent(step)"
+              ></component>
+            </template>
+          </l-accordion-item>
+        </l-accordion>
+        <b-button
+          class="w-100"
+          :disabled="!canOrder"
+          @click="handleOrderButtonClick"
+          >Order</b-button
         >
-          <template #accordion-trigger>
-            <h3>{{ step.title }}</h3>
-            <div v-if="step.completed" class="checkout-step_checkmark"></div>
-          </template>
-          <template #accordion-content>
-            <component
-              :is="step.route.component"
-              @completed="handleStepCompletedEvent(step)"
-            ></component>
-          </template>
-        </l-accordion-item>
-      </l-accordion>
-      <b-button
-        class="w-100"
-        :disabled="!canOrder"
-        @click="handleOrderButtonClick"
-        >Order</b-button
-      >
+      </template>
     </l-section>
   </b-container>
 </template>
@@ -65,7 +68,10 @@ export default {
   },
 
   beforeRouteUpdate(_to, _from, next) {
-    this.stepCurrent = this.steps.map((x) => x.route.name).indexOf(_to.name);
+    const nextStep = this.steps.map((x) => x.route.name).indexOf(_to.name);
+    if (nextStep >= 0) {
+      this.stepCurrent = nextStep;
+    }
     return next();
   },
 
@@ -84,6 +90,7 @@ export default {
           completed: false,
         })
       ),
+      completed: false,
     };
   },
 
@@ -120,6 +127,7 @@ export default {
     handleOrderButtonClick() {
       this.cartOrder().then(() => {
         this.$router.push({ name: "checkout-receipt" });
+        this.completed = true;
       });
     },
   },
