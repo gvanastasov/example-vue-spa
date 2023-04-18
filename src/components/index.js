@@ -8,6 +8,8 @@ export { default as LPageDialog } from "./layouts/LPageDialog.vue";
 export { default as LSection } from "./layouts/LSection.vue";
 export { default as LSectionChain } from "./layouts/LSectionChain.vue";
 export { default as LPage } from "./layouts/LPage.vue";
+export { default as LAccordion } from "./layouts/LAccordion.vue";
+export { default as LAccordionItem } from "./layouts/LAccordionItem.vue";
 
 // components
 export { default as CProductCard } from "./products/CProductCard.vue";
