@@ -2,6 +2,15 @@
 
 A simple demostration of vue.js capabilities of building single-page-applications, routing, state management and other simple concepts. The build is setup manually (via webpack), and not using vue-cli or any other popular scaffolder, to demonstrate the building blocks of a vue application. Version 3 is used, but with legacy 'options' modules. To enhance the fast prototyping process, vue-bootstrap is used in conjunction with some other popular libraries (see below for more details). The theme is set for an example book store, where a few public pages are added, as well as browsing capability (of products), further developed into simple commerce handling. All interaction with backend is simluated via miragejs (a proxy interceptor for web api calls). This ensure a simple, encapsulated enviroment for demo purposes only, but also a good opportunity for scalling up.
 
+Experiences:
+
+- user can see landing page (and a small number of other public pages)
+- user can login/logout/register
+- user can browse, filter & search products
+- user can see details of product
+- user can add/remove product(s) to cart
+- user can follow through purchase flow
+
 ## **Quick start**
 
 ```sh
