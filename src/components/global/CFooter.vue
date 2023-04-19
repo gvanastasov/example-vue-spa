@@ -84,11 +84,32 @@
 </template>
 
 <script>
+/**
+ * A simple footer Vue.js component
+ * @typedef {import('vue').ComponentOptions} ComponentOptions
+ */
+
+/**
+ * Definition of the CFooter component
+ * @type {ComponentOptions}
+ */
 export default {
+  /**
+   * Name of the component
+   * @type {string}
+   */
   name: "CFooter",
 
+  /**
+   * Data properties of the component
+   * @returns {Object}
+   */
   data() {
     return {
+      /**
+       * The current year, obtained from the system date
+       * @type {number}
+       */
       year: new Date().getFullYear(),
     };
   },

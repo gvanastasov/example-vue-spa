@@ -10,15 +10,32 @@
 </template>
 
 <script>
+/**
+ * Component for a dialog page with a card.
+ * @typedef {Object} LPageDialog
+ */
 import { LCard } from "@/components";
 
 export default {
+  /**
+   * The name of the component.
+   * @type {String}
+   */
   name: "LPageDialog",
 
+  /**
+   * The components used by this page.
+   * @type {Object}
+   */
   components: {
     LCard,
   },
 
+  /**
+   * The props of this component.
+   * @type {Object}
+   * @property {String} title The title of the dialog page.
+   */
   props: {
     title: {
       type: String,

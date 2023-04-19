@@ -12,7 +12,6 @@
         <b-nav-item href="#">About</b-nav-item>
       </b-navbar-nav>
 
-      <!-- Right aligned nav items -->
       <b-navbar-nav class="ms-auto">
         <!-- todo: add search functionality. -->
         <!-- <b-nav-form>
@@ -58,27 +57,54 @@
 import { mapState, mapGetters, mapActions } from "pinia";
 import { useUserStore } from "@/stores";
 
+/**
+ * A navigation bar component with user information and language options
+ */
 export default {
+  /**
+   * Name of the component
+   * @type {string}
+   */
   name: "CNavbar",
 
   computed: {
+    /**
+     * Map the username state from the user store
+     * @type {Object}
+     */
     ...mapState(useUserStore, {
       username: "username",
     }),
+
+    /**
+     * Map the userAuthenticated getter from the user store
+     * @type {Object}
+     */
     ...mapGetters(useUserStore, {
       userAuthenticated: "isAuthenticated",
     }),
   },
 
   methods: {
+    /**
+     * Map the logout action from the user store
+     * @type {Object}
+     */
     ...mapActions(useUserStore, {
       userLogout: "logout",
     }),
 
+    /**
+     * Handle logout click event
+     */
     handleLogutClick() {
       this.userLogout();
     },
 
+    /**
+     * Change the locale of the application
+     * @param {string} locale - The new locale to set
+     */
     changeLocale(locale) {
       this.$i18n.locale = locale;
     },

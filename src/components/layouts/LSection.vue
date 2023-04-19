@@ -13,9 +13,20 @@
 </template>
 
 <script>
+/**
+ * Component for displaying a section of content on a page
+ * @component
+ */
 export default {
   name: "LSection",
 
+  /**
+   * Props that can be passed to this component
+   * @prop {Boolean} jumbo - Whether the section is a jumbo section or not
+   * @prop {Number} level - The heading level for the section (default is 2)
+   * @prop {Number} as - The HTML tag to use for the section (default is 6 for <h6>)
+   * @prop {Boolean} separatorTop - Whether to show a separator line above the section or not
+   */
   props: {
     jumbo: {
       type: Boolean,
@@ -35,6 +46,10 @@ export default {
     },
   },
 
+  /**
+   * Data properties for the component
+   * @returns {Object} - Object with properties "chained" and "index"
+   */
   data() {
     return {
       chained: false,
@@ -43,12 +58,26 @@ export default {
   },
 
   computed: {
+    /**
+     * The heading level to use for the section title
+     * @returns {Number} - The heading level for the section title
+     */
     headerLevel() {
       return this.jumbo ? 1 : this.level;
     },
+
+    /**
+     * The HTML tag to use for the section title
+     * @returns {Number} - The HTML tag for the section title
+     */
     headerAs() {
       return this.jumbo ? 3 : this.as;
     },
+
+    /**
+     * Whether to show a separator line below the section or not
+     * @returns {Boolean} - Whether to show a separator line below the section
+     */
     separatorBottom() {
       return (
         !this.chained ||
@@ -56,6 +85,11 @@ export default {
           this.index === this.$parent.sections.length - 1)
       );
     },
+
+    /**
+     * Whether to add bottom margin to the section or not, depending on whether it's the last in the chain
+     * @returns {Boolean} - Whether to add bottom margin to the section
+     */
     spaced() {
       return (
         this.chained &&
@@ -65,11 +99,18 @@ export default {
     },
   },
 
+  /**
+   * Called when the component is created
+   * Attempts to chain the section to the parent chain, if applicable
+   */
   created() {
     this.tryChain();
   },
 
   methods: {
+    /**
+     * Attempts to chain the section to the parent chain
+     */
     tryChain() {
       this.chained = this.$parent.$options.name === "LSectionChain";
       if (this.chained) {

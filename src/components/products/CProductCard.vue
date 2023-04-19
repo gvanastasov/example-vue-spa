@@ -38,34 +38,89 @@
 </template>
 
 <script>
+/**
+ * Component representing a card displaying product information
+ *
+ * @component
+ * @example
+ * <CProductCard title="Example Book" author="John Doe" />
+ */
 export default {
   name: "CProductCard",
 
   props: {
+    /**
+     * The ID of the product
+     *
+     * @type {String}
+     * @default undefined
+     */
     id: {
       type: String,
       default: undefined,
     },
+
+    /**
+     * The title of the product
+     *
+     * @type {String}
+     * @default ""
+     */
     title: {
       type: String,
       default: "",
     },
+
+    /**
+     * The description of the product
+     *
+     * @type {String}
+     * @default ""
+     */
     description: {
       type: String,
       default: "",
     },
+
+    /**
+     * The published date of the product
+     *
+     * @type {String}
+     * @default ""
+     */
     published: {
       type: String,
       default: "",
     },
+
+    /**
+     * The genre of the product
+     *
+     * @type {String}
+     * @default ""
+     */
     genre: {
       type: String,
       default: "",
     },
+
+    /**
+     * The author of the product
+     *
+     * @type {String}
+     * @default ""
+     */
     author: {
       type: String,
       default: "",
     },
+
+    /**
+     * Whether to display a link to the product details page or not
+     *
+     * @type {Boolean}
+     * @default true
+     */
     link: {
       type: Boolean,
       default: true,
@@ -73,6 +128,11 @@ export default {
   },
 
   methods: {
+    /**
+     * Handles the click event on the card and navigates to the product details page
+     *
+     * @emits click
+     */
     handleCardClick() {
       if (this.id) {
         this.$router.push({

@@ -15,6 +15,9 @@
 </template>
 
 <script>
+/**
+ * Represents the CheckoutBillingPage component.
+ */
 const component = {
   name: "CheckoutBillingPage",
 
@@ -27,6 +30,10 @@ const component = {
   },
 
   methods: {
+    /**
+     * Emits the 'completed' event to signal the completion of the billing step.
+     * @returns {void}
+     */
     handleNextButtonClick() {
       const payload = {};
       this.$emit("completed", payload);
@@ -34,6 +41,9 @@ const component = {
   },
 };
 
+/**
+ * Represents the billing step of the checkout process.
+ */
 const step = {
   title: "Billing",
   route: {

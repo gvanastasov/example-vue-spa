@@ -7,6 +7,9 @@
 </template>
 
 <script>
+/**
+ * A simple card component for displaying content.
+ */
 export default {
   name: "LCard",
 };

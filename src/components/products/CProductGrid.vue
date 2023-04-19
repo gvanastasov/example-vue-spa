@@ -92,31 +92,61 @@ export default {
   },
 
   props: {
+    /**
+     * The number of books to take from the API response.
+     * @type {Number}
+     * @default undefined
+     */
     take: {
       type: Number,
       default: undefined,
     },
 
+    /**
+     * The order to sort the books in.
+     * @type {String}
+     * @default undefined
+     */
     order: {
       type: String,
       default: undefined,
     },
 
+    /**
+     * The number of items to display per page.
+     * @type {Number}
+     * @default undefined
+     */
     pageItemsCount: {
       type: Number,
       default: undefined,
     },
 
+    /**
+     * Whether to hide the filters section.
+     * @type {Boolean}
+     * @default false
+     */
     hideFilters: {
       type: Boolean,
       default: false,
     },
 
+    /**
+     * Whether to hide the pagination section.
+     * @type {Boolean}
+     * @default false
+     */
     hidePagination: {
       type: Boolean,
       default: false,
     },
 
+    /**
+     * Whether to use the deck layout for the grid.
+     * @type {Boolean}
+     * @default false
+     */
     deck: {
       type: Boolean,
       default: false,
@@ -125,17 +155,42 @@ export default {
 
   data() {
     return {
+      /**
+       * The pagination information.
+       * @type {Object}
+       * @property {Number} current - The current page number.
+       * @property {Number} total - The total number of items.
+       */
       pagination: {
         current: 1,
         total: undefined,
       },
+
+      /**
+       * The facets that are currently active.
+       * @type {Array}
+       */
       facets: [],
+
+      /**
+       * The list of books to display in the grid.
+       * @type {Array}
+       */
       books: [],
+
+      /**
+       * Whether the data is currently being loaded.
+       * @type {Boolean}
+       */
       loading: true,
     };
   },
 
   computed: {
+    /**
+     * The number of skeleton items to display.
+     * @type {Number}
+     */
     skeletonCount() {
       return Math.max(this.take || 10);
     },
@@ -150,16 +205,31 @@ export default {
       fetchBooks: "fetchBooks",
     }),
 
+    /**
+     * Handles a change in the current page.
+     * @param {Number} page - The new current page number.
+     */
     handlePageChange(page) {
       this.pagination.current = page;
       this.fetchGridData(page - 1);
     },
 
+    /**
+     * Handles a click on a facet.
+     * @param {Object} _facet - The facet object that was clicked.
+     * @param {Object} opt - The option object that was clicked.
+     */
     handleFacetClick(_facet, opt) {
       opt.active = !opt.active;
       this.fetchGridData(0, this.facets);
     },
 
+    /**
+     * Fetches grid data by calling the 'fetchBooks' action from the 'useBookStore' store.
+     * @param {number} page - The current page number to fetch.
+     * @param {array} facets - An optional array of facets to filter the data.
+     * @returns {void}
+     */
     fetchGridData(page, facets = []) {
       this.fetchBooks({
         take: this.take,

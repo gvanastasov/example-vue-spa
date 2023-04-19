@@ -41,6 +41,11 @@
 </template>
 
 <script>
+/**
+ * A component representing the checkout page
+ * @typedef {Object} CheckoutPage
+ */
+
 import { shallowRef } from "vue";
 import { mapActions } from "pinia";
 import { useCartStore } from "@/stores";
@@ -52,6 +57,7 @@ import { step as customerStep } from "./CheckoutCustomerPage.vue";
 import { step as shippingStep } from "./CheckoutShippingPage.vue";
 import { step as previewStep } from "./CheckoutRreviewPage.vue";
 
+/** @type {CheckoutPage} */
 export default {
   name: "CheckoutPage",
 
@@ -61,12 +67,24 @@ export default {
     LAccordionItem,
   },
 
+  /**
+   * Executes before the route enters
+   * @param {Object} to - The route that is going to be navigated to
+   * @param {Object} from - The route that is going to be navigated from
+   * @param {Function} next - The callback function to move to the next step
+   */
   beforeRouteEnter(_to, _from, next) {
     next((vm) => {
       vm.$router.replace({ name: vm.steps[0].route.name });
     });
   },
 
+  /**
+   * Executes before the route updates
+   * @param {Object} to - The route that is going to be navigated to
+   * @param {Object} from - The route that is going to be navigated from
+   * @param {Function} next - The callback function to move to the next step
+   */
   beforeRouteUpdate(_to, _from, next) {
     const nextStep = this.steps.map((x) => x.route.name).indexOf(_to.name);
     if (nextStep >= 0) {
@@ -104,6 +122,11 @@ export default {
     ...mapActions(useCartStore, {
       cartOrder: "cartOrder",
     }),
+
+    /**
+     * Handles the event when the accordion changes
+     * @param {number} index - The index of the current accordion
+     */
     handleAccordionChangeEvent(index) {
       if (index !== null) {
         this.stepCurrent = index;
@@ -112,6 +135,10 @@ export default {
       }
     },
 
+    /**
+     * Handles the event when a step is completed
+     * @param {Object} step - The completed step
+     */
     handleStepCompletedEvent(step) {
       step.completed = true;
 
@@ -124,6 +151,9 @@ export default {
       }
     },
 
+    /**
+     * Handles the order button click event
+     */
     handleOrderButtonClick() {
       this.cartOrder().then(() => {
         this.$router.push({ name: "checkout-receipt" });

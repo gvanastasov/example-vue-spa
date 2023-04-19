@@ -58,31 +58,75 @@
 </template>
 
 <script>
+/**
+ * Checkout basket page Vue.js component
+ * @typedef {import('vue').ComponentOptions} ComponentOptions
+ * @typedef {import('@/stores').CartStore} CartStore
+ * @typedef {import('@/stores').Cart} Cart
+ */
+
+// Import necessary modules and components
 import { LSection } from "@/components";
 
 import { mapActions } from "pinia";
 import { useCartStore } from "@/stores";
 
+/**
+ * Checkout basket page component definition
+ * @type {ComponentOptions}
+ */
 export default {
+  /**
+   * Name of the component
+   * @type {string}
+   */
   name: "CheckoutBasketPage",
 
+  /**
+   * Child components of the component
+   * @type {Object}
+   */
   components: {
     LSection,
   },
 
+  /**
+   * Data properties of the component
+   * @returns {Object}
+   */
   data() {
     return {
+      /**
+       * Flag indicating whether the component is currently fetching data from the server
+       * @type {boolean}
+       */
       networking: true,
+      /**
+       * User's shopping cart
+       * @type {?Cart}
+       */
       cart: null,
     };
   },
 
+  /**
+   * Computed properties of the component
+   * @type {Object}
+   */
   computed: {
+    /**
+     * Whether the user's cart has items or not
+     * @returns {boolean}
+     */
     hasItems() {
       return Boolean(this.cart?.items.length);
     },
   },
 
+  /**
+   * Lifecycle hook that is called when the component is created
+   * @type {Function}
+   */
   created() {
     this.cartFetch().then(({ cart }) => {
       this.networking = false;
@@ -90,12 +134,33 @@ export default {
     });
   },
 
+  /**
+   * Methods of the component
+   * @type {Object}
+   */
   methods: {
+    /**
+     * Map actions from the CartStore to the component's methods
+     * @type {Object}
+     */
     ...mapActions(useCartStore, {
+      /**
+       * Action that fetches the user's cart data from the server
+       * @type {Function}
+       */
       cartFetch: "cartFetch",
+      /**
+       * Action that removes an item from the user's cart
+       * @type {Function}
+       */
       cartRemove: "cartRemove",
     }),
 
+    /**
+     * Handle click event when removing an item from the user's cart
+     * @param {Object} item - The item to be removed from the cart
+     * @type {Function}
+     */
     handleRemoveItemClick(item) {
       this.cartRemove({ code: item.id }).then(({ cart }) => {
         this.cart = cart;

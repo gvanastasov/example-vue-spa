@@ -14,6 +14,10 @@
 <script>
 import { LSection, LSectionChain } from "@/components";
 
+/**
+ * The LPage component provides a layout for a page, with a title and sections.
+ * @name LPage
+ */
 export default {
   name: "LPage",
 
