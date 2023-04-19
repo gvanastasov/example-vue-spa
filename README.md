@@ -25,6 +25,7 @@ npm run start
 - install bootstrap and theming (vue-3 experimental)
 - install localization (vue-i18n)
 - install validation (vuelidate)
+- install miragejs (for simulation of web api integration)
 
 ## **Highlights**
 
